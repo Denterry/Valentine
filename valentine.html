@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Валентинка для Маши 💙</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Background images container */
+        .background-images {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        .bg-image {
+            position: absolute;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(70, 130, 180, 0.3);
+        }
+
+        /* Main content container */
+        .container {
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(135deg, #4682b4, #1e90ff);
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(70, 130, 180, 0.4);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            backdrop-filter: blur(10px);
+            border: 3px solid #1e90ff;
+            color: white;
+        }
+
+        .heart-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        h1 {
+            color: white;
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .question {
+            color: white;
+            font-size: 28px;
+            margin: 30px 0;
+            font-weight: bold;
+            line-height: 1.6;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #4682b4, #1e90ff);
+            color: white;
+            box-shadow: 0 5px 20px rgba(70, 130, 180, 0.4);
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(70, 130, 180, 0.6);
+        }
+
+        .btn-yes:active {
+            transform: scale(0.98);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #4682b4, #1e90ff);
+            color: white;
+            position: absolute;
+            box-shadow: 0 5px 20px rgba(70, 130, 180, 0.4);
+        }
+
+        .btn-no:hover {
+            transform: scale(1.05);
+        }
+
+        /* Success page */
+        .success-page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(135deg, #4682b4, #1e90ff);
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(70, 130, 180, 0.4);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            backdrop-filter: blur(10px);
+            border: 3px solid #1e90ff;
+            color: white;
+            margin: auto;
+        }
+
+        .success-page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #4682b4;
+            pointer-events: none;
+        }
+
+        .success-content {
+            animation: popIn 0.5s ease;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0) rotate(-180deg);
+            }
+            50% {
+                transform: scale(1.1) rotate(10deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .joke-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(70, 130, 180, 0.3);
+        }
+
+        .joke-text {
+            color: white;
+            font-size: 24px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .celebratory-text {
+            color: white;
+            font-size: 32px;
+            margin: 20px 0;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .reset-btn {
+            margin-top: 30px;
+            background: linear-gradient(135deg, #4682b4, #1e90ff);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(70, 130, 180, 0.4);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .question {
+                font-size: 22px;
+            }
+
+            .btn {
+                padding: 12px 30px;
+                font-size: 16px;
+            }
+
+            .heart-icon {
+                font-size: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background images will be inserted here by JavaScript -->
+    <div class="background-images" id="backgroundImages"></div>
+
+    <!-- Main valentine page -->
+    <div class="container" id="mainPage">
+        <div class="heart-icon">💙</div>
+        <h1>Привет, Маша! 🌹</h1>
+        <div class="question">
+            Маша, станешь моей валентинкой?
+        </div>
+        <div class="buttons-container">
+            <button class="btn btn-yes" id="yesBtn">ДА! 💕</button>
+            <button class="btn btn-no" id="noBtn">НЕТ 😅</button>
+        </div>
+    </div>
+
+    <!-- Success page -->
+    <div class="success-page" id="successPage">
+        <div class="success-content">
+            <div class="heart-icon">💙✨</div>
+            <div class="celebratory-text">ЛА-ЛА-ЛА! 🎉</div>
+            <div class="joke-text">Ты правда думала, что у тебя есть выбор ахахха? 😄</div>
+            <div style="font-size: 20px; color: white; margin: 20px 0;">
+                За подробностями в личку! 💙
+            </div>
+            <img src="images/20.jpg" alt="Happy" class="joke-image" style="max-width: 300px;">
+            <button class="reset-btn" id="resetBtn">Начать заново</button>
+        </div>
+    </div>
+
+    <script>
+        // Generate random background images
+        // You can replace these image URLs with local paths after you create an 'images' folder
+        const imageUrls = [
+            'images/1.jpg',
+            'images/2.jpg',
+            'images/3.jpg',
+            'images/4.jpg',
+            'images/5.jpg',
+            'images/6.jpg',
+            'images/7.jpg',
+            'images/9.jpg',
+            'images/11.jpg',
+            'images/12.jpg',
+            'images/13.jpg',
+            'images/14.jpg',
+            'images/15.jpg',
+            'images/16.jpg',
+            'images/17.jpg',
+            'images/18.jpg'
+        ];
+
+        // Create beautiful background collage with 3 horizontal lines
+        function createBackgroundImages() {
+            const container = document.getElementById('backgroundImages');
+
+            // Divide images into 3 horizontal lines
+            const imagesPerLine = Math.ceil(imageUrls.length / 3);
+            const lines = [
+                { topRange: [5, 25], images: [] },      // Top line: 5-25%
+                { topRange: [40, 60], images: [] },     // Middle line: 40-60%
+                { topRange: [75, 95], images: [] }      // Bottom line: 75-95%
+            ];
+
+            // Distribute images into lines
+            imageUrls.forEach((url, index) => {
+                const lineIndex = Math.floor(index / imagesPerLine) % 3;
+                lines[lineIndex].images.push(url);
+            });
+
+            // Place images in each line
+            lines.forEach((line) => {
+                const positions = [];
+                // Distribute horizontally evenly with slight randomness
+                for (let i = 0; i < line.images.length; i++) {
+                    const baseLeft = (i / line.images.length) * 100;
+                    const leftOffset = (Math.random() - 0.5) * 15; // ±7.5% variation
+                    positions.push(baseLeft + leftOffset);
+                }
+
+                line.images.forEach((url, index) => {
+                    // Varied sizes for depth effect: small, medium, and large images
+                    const sizeRandom = Math.random();
+                    let size;
+                    if (sizeRandom < 0.3) {
+                        size = Math.random() * 100 + 150; // Small: 150-250px
+                    } else if (sizeRandom < 0.7) {
+                        size = Math.random() * 150 + 280; // Medium: 280-430px
+                    } else {
+                        size = Math.random() * 150 + 320; // Large: 320-470px
+                    }
+
+                    // Position in current line
+                    const topRange = line.topRange;
+                    const randomTop = Math.random() * (topRange[1] - topRange[0]) + topRange[0];
+                    const randomLeft = positions[index];
+
+                    // Varied opacity for depth and layering
+                    const opacity = Math.random() * 0.3 + 0.5; // 0.5 to 0.8 opacity
+
+                    // Subtle rotation: max ±20 degrees
+                    const randomRotate = (Math.random() - 0.5) * 40; // -20 to 20 degrees
+
+                    // Random blur for artistic effect (0-6px)
+                    const blur = Math.random() * 6;
+
+                    const img = document.createElement('div');
+                    img.className = 'bg-image';
+                    img.style.backgroundImage = `url('${url}')`;
+                    img.style.width = size + 'px';
+                    img.style.height = size + 'px';
+                    img.style.top = randomTop + '%';
+                    img.style.left = randomLeft + '%';
+                    img.style.opacity = opacity;
+                    img.style.transform = `rotate(${randomRotate}deg)`;
+                    img.style.filter = `blur(${blur}px)`;
+                    img.style.zIndex = Math.floor(Math.random() * 100); // Random layering
+                    container.appendChild(img);
+                });
+            });
+        }
+
+        // Escape button logic with 3 different patterns
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        let moveCount = 0;
+        const maxMoves = 5;
+
+        function moveButton() {
+            moveCount++;
+
+            // After 5 moves, hide the button
+            if (moveCount > maxMoves) {
+                noBtn.style.display = 'none';
+                return;
+            }
+
+            const btnWidth = 150;
+            const btnHeight = 60;
+            const maxX = window.innerWidth - btnWidth;
+            const maxY = window.innerHeight - btnHeight;
+
+            // Get current position
+            let currentX = parseFloat(noBtn.style.left) || 0;
+            let currentY = parseFloat(noBtn.style.top) || 0;
+
+            // Wider movement directions (80-120 pixels) - moves across different areas
+            const directions = [
+                { x: 120, y: 0 },      // Right
+                { x: -120, y: 0 },     // Left
+                { x: 0, y: 100 },      // Down
+                { x: 0, y: -100 },     // Up
+                { x: 100, y: 80 },     // Down-Right
+                { x: -100, y: 80 },    // Down-Left
+                { x: 100, y: -80 },    // Up-Right
+                { x: -100, y: -80 }    // Up-Left
+            ];
+
+            // Pick a random direction
+            const direction = directions[Math.floor(Math.random() * directions.length)];
+            let newX = currentX + direction.x;
+            let newY = currentY + direction.y;
+
+            // Ensure button stays within bounds
+            newX = Math.max(0, Math.min(newX, maxX));
+            newY = Math.max(0, Math.min(newY, maxY));
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+        }
+
+        noBtn.addEventListener('mouseenter', moveButton);
+
+        // Touch support for mobile
+        noBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            moveButton();
+        });
+
+        // Yes button click
+        yesBtn.addEventListener('click', function() {
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('successPage').classList.add('active');
+            createConfetti();
+        });
+
+        // Reset button
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            document.getElementById('mainPage').style.display = 'block';
+            document.getElementById('successPage').classList.remove('active');
+            // Reset button position
+            noBtn.style.position = 'relative';
+            noBtn.style.left = 'auto';
+            noBtn.style.top = 'auto';
+        });
+
+        // Confetti effect
+        function createConfetti() {
+            const colors = ['#4682b4', '#1e90ff', '#87ceeb', '#ff69b4'];
+
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = '-10px';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.opacity = '0.8';
+                document.body.appendChild(confetti);
+
+                // Animate confetti falling
+                let top = -10;
+                let left = parseFloat(confetti.style.left);
+                const speed = Math.random() * 2 + 1;
+                const drift = (Math.random() - 0.5) * 3;
+
+                const interval = setInterval(() => {
+                    top += speed;
+                    left += drift;
+                    confetti.style.top = top + 'px';
+                    confetti.style.left = left + 'px';
+                    confetti.style.opacity = 1 - (top / window.innerHeight);
+
+                    if (top > window.innerHeight) {
+                        clearInterval(interval);
+                        confetti.remove();
+                    }
+                }, 30);
+            }
+        }
+
+        // Initialize
+        createBackgroundImages();
+    </script>
+</body>
+</html>
